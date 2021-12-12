@@ -3,4 +3,4 @@ from .views import ProductsModelViewSet
 
 
 router = routers.SimpleRouter()
-router.register('', ProductsModelViewSet)
+router.register('', ProductsModelViewSet, basename='products')
