@@ -28,7 +28,7 @@ function LoginForm(props) {
   const getToken = async () => {
     const result = await GetAccessToken(username, password);
     if (result.statuscode === 200) {
-      history.push("/");
+      history.push("/products");
     } else {
       setMessage(result.message);
     }

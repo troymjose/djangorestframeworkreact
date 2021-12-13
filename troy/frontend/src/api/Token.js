@@ -1,11 +1,12 @@
 import axios from "axios";
+import { TOKEN_URL, TOKEN_REFRESH_URL } from "./Urls";
 
 export async function GetAccessToken(username, password) {
   let statuscode = 0;
   let message = "";
   try {
     const body = { username: username, password: password };
-    const response = await axios.post("http://127.0.0.1:8000/api/token/", body);
+    const response = await axios.post(TOKEN_URL, body);
     statuscode = response.status;
     localStorage.setItem("access", response.data.access);
     localStorage.setItem("refresh", response.data.refresh);
@@ -29,10 +30,7 @@ export async function RefreshAccessToken(refresh) {
   let statuscode = 0;
   try {
     const body = { refresh: refresh };
-    const response = await axios.post(
-      "http://127.0.0.1:8000/api/token/refresh/",
-      body
-    );
+    const response = await axios.post(TOKEN_REFRESH_URL, body);
     statuscode = response.status;
     if (statuscode === 200)
       localStorage.setItem("access", response.data.access);
